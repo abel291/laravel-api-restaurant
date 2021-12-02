@@ -20,9 +20,7 @@ class CategorySeeder extends Seeder
         DB::table('categories')->truncate();
         $categories = ['Hamburguesas', 'Ensaladas', 'Pizza', 'Bebidas'];
 
-        foreach ($categories as $key => $category) {
-
-            echo "category  " . $category . "  \n";
+        foreach ($categories as $key => $category) {            
             Category::create(
                 [
                     'name' => $category,

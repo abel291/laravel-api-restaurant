@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Image;
+
 use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
@@ -25,7 +25,7 @@ class ProductSeeder extends Seeder
         foreach ($categories as $category) {
             for ($i = 1; $i < 9; $i++) {
 
-                echo "product $i - " . $category->name . " \n";
+                
                 $name = $faker->sentence(2);
                 $price_default = rand(10, 200);
                 $price = 0;
@@ -58,13 +58,13 @@ class ProductSeeder extends Seeder
 
                 $images = [];
                 for ($t = 1; $t < 4; $t++) {
-                    echo "---image - $t  \n";
-                    array_push($images, [
+                    
+                    $images[$t] = [
                         "alt" => $faker->sentence(3),
                         "title" => $faker->sentence(3),
                         "img" => "/img/" . $category->slug . "/img-$t.jpg",
-                        
-                    ]);
+
+                    ];
                 }
                 $product->images()->createMany($images);
             }

@@ -9,6 +9,7 @@ use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use phpDocumentor\Reflection\Types\Boolean;
 
 class ShoppingCartController extends Controller
 {
@@ -42,22 +43,28 @@ class ShoppingCartController extends Controller
             'quantity' => "required|numeric|min:1",
         ]);
 
-        $user = User::first(); //auth()->user()->with('shopping_cart');
+        $user = User::with('shopping_cart')->first(); //auth()->user()->with('shopping_cart');
         $product = Product::findOrFail($request->id);
+
+        $is_new_product = $user->shopping_cart->where('id', $request->id)->isEmpty();
+        $count_product = $user->shopping_cart->count();
+        if ($is_new_product && $count_product > 10) {
+            return response()->json([
+                'message' => 'El limite del carrito es de 10 productos'
+            ], 422);
+        }
 
         if ($product->stock < $request->quantity) {
             return response()->json([
                 'message' => 'No hay stock disponible'
-            ], 404);
+            ], 422);
         }
-
 
         /*El método updateOrInsert intentará localizar un registro de base de datos coincidente utilizando los 
         pares de valores y columnas del primer argumento. Si el registro existe, se actualizará con los valores 
         del segundo argumento. Si no se puede encontrar el registro, se insertará un nuevo registro con los 
         atributos combinados de ambos argumentos:*/
         DB::table('shopping_cart')->updateOrInsert([
-
             'user_id' => $user->id,
             'product_id' => $product->id,
         ], [
@@ -66,7 +73,7 @@ class ShoppingCartController extends Controller
         ]);
 
         return [
-            'products' => ProductResource::collection($user->shopping_cart),
+            'products' => ProductResource::collection($user->shopping_cart()->get()),
             'meta' => $this->total_price($user)
         ];
     }

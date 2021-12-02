@@ -27,8 +27,7 @@ class GallerySeeder extends Seeder
             ]);
 
             $images = [];
-            for ($t = 1; $t < 9; $t++) {
-                echo "---image - $t  \n";
+            for ($t = 1; $t < 9; $t++) {                
                 $images[$t] = [
                     "alt" => $faker->sentence(3),
                     "title" => $faker->sentence(3),
