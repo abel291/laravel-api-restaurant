@@ -16,11 +16,11 @@ class UserSeeder extends Seeder
      * @return void
      */
     public function run()
-    {   
-        
+    {
+
         DB::table('users')->truncate();
         $faker = Faker\Factory::create();
-        DB::table('users')->insert([
+        User::create([
             'name' => 'Gregoria Soriano',
             'email' => 'example@exmaple.com',
             'password' => Hash::make('123123'),
@@ -29,5 +29,6 @@ class UserSeeder extends Seeder
             'city' => str_replace(["'", '"'], '', $faker->city),
 
         ]);
+        User::factory(20)->create();
     }
 }

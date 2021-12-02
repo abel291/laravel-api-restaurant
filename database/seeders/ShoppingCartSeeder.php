@@ -20,11 +20,11 @@ class ShoppingCartSeeder extends Seeder
         DB::table('shopping-cart')->truncate();
         $products = Product::get()->random(10);
         $user = User::first();
-        
+
         foreach ($products as $key => $product) {
-            $quantity=rand(1,$product->max_quantity);
-            $total_price_quantity=$product->price*$quantity;
-            echo "shopping cart $key \n";
+            $quantity = rand(1, $product->max_quantity);
+            $total_price_quantity = $product->price * $quantity;
+
             $user->shopping_cart()->attach($product->id, [
                 'quantity' => $quantity,
                 'total_price_quantity' => $total_price_quantity
