@@ -2,11 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
+
 use App\Models\Gallery;
+use App\Models\Image;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Str;
-use Faker;
+
 
 class GallerySeeder extends Seeder
 {
@@ -17,25 +17,9 @@ class GallerySeeder extends Seeder
      */
     public function run()
     {
-        $faker = Faker\Factory::create();
-        foreach (Category::get() as $key => $category) {
+        Gallery::truncate();
 
-            $gallery=Gallery::create([
-                "name" => $category->name,
-                "slug" => Str::slug($category->name),
-                "active" => 1,
-            ]);
-
-            $images = [];
-            for ($t = 1; $t < 9; $t++) {                
-                $images[$t] = [
-                    "alt" => $faker->sentence(3),
-                    "title" => $faker->sentence(3),
-                    "img" => "/img/" . $category->slug . "/img-$t.jpg",
-
-                ];
-            }
-            $gallery->images()->createMany($images);
-        }
+        $images = Image::factory()->count(8);
+        Gallery::factory(5)->has($images)->create();
     }
 }

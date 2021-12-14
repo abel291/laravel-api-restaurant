@@ -17,12 +17,12 @@ class ShoppingCartSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('shopping-cart')->truncate();
+        DB::table('shopping_cart')->truncate();
         $products = Product::get()->random(10);
         $user = User::first();
 
         foreach ($products as $key => $product) {
-            $quantity = rand(1, $product->max_quantity);
+            $quantity = rand(1, $product->stock);
             $total_price_quantity = $product->price * $quantity;
 
             $user->shopping_cart()->attach($product->id, [

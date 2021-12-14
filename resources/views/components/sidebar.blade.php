@@ -3,14 +3,47 @@ $nav_items = [
     [
         'name' => 'Dashboard',
         'route' => 'dashboard.home',
-
-        'icon' => '<path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />',
+        'icon' => 'home',
     ],
     [
         'name' => 'Usuarios',
         'route' => 'dashboard.users',
-
-        'icon' => '<path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />',
+        'icon' => 'user',
+    ],
+    [
+        'name' => 'Categorias',
+        'route' => 'dashboard.categories',
+        'icon' => 'view-grid',
+    ],
+    [
+        'name' => 'Productos',
+        'route' => 'dashboard.products',
+        'icon' => 'shopping-bag',
+    ],
+    [
+        'name' => 'Targeta de regalo',
+        'route' => 'dashboard.gift_card',
+        'icon' => 'cash',
+    ],
+    [
+        'name' => 'Codigo de descuento',
+        'route' => 'dashboard.discount_code',
+        'icon' => 'badge-check',
+    ],
+    [
+        'name' => 'Galeria',
+        'route' => 'dashboard.gallery',
+        'icon' => 'photograph',
+    ],
+    [
+        'name' => 'Paginas',
+        'route' => 'dashboard.page',
+        'icon' => 'collection',
+    ],
+    [
+        'name' => 'Promos',
+        'route' => 'dashboard.promo',
+        'icon' => 'badge-check',
     ],
 ];
 @endphp
@@ -18,12 +51,9 @@ $nav_items = [
     class="sidebar-nabvar md:w-64 bg-gray-800 flex-shrink-0 flex-col  text-gray-300 hidden md:block  ">
 
     <div class="max-w-7xl mx-auto px-4  py-5">
-
-
-
         <div class="  text-2xl font-semibold text-white text-center">
             <a href="!#">
-                RRHH
+                Admin
             </a>
         </div>
 
@@ -34,9 +64,8 @@ $nav_items = [
         @foreach ($nav_items as $item)
             <a href="{{ route($item['route']) }}"
                 class="flex items-center rounded-md p-2.5 space-x-3 font-medium {{ request()->routeIs($item['route']) ? 'bg-gray-900 text-white' : 'hover:bg-gray-900 hover:text-white' }} ">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    {!! $item['icon'] !!}
-                </svg>
+                @svg("heroicon-s-".$item['icon'],'h-5 w-5')
+
                 <span>{{ $item['name'] }}</span>
             </a>
         @endforeach

@@ -16,10 +16,10 @@ class CreatePagesTable extends Migration
         Schema::create('pages', function (Blueprint $table) {
             $table->id();
             $table->string('type');
-            $table->string('img')->nullable();
-            $table->string('alt_img')->nullable();
-            $table->string('title')->nullable();
-            $table->string('breadcrumb')->nullable();
+            $table->string('banner')->nullable();
+            $table->string('alt_banner')->nullable();
+            $table->string('title')->nullable();            
+            //$table->string('options')->nullable();
             $table->timestamps();
         });
     }

@@ -9,7 +9,6 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        
         'name',
         'portion_size',
         'calories',
@@ -19,15 +18,18 @@ class Product extends Model
         'img',
         'banner',
         'stars',
-        'price_default',
-        'max_quantity',
-        'offer',
-        'price',
-        'type',
+        'price',        
         'active',
         'stock',
 
     ];
+    protected $casts = [
+        'name' => 'string',
+    ];
+    protected $attributes = [
+        'active' => 1,
+    ];
+
     public function images()
     {
         return $this->morphMany(Image::class, 'imageable');
@@ -37,7 +39,8 @@ class Product extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function shopping_cart(){
-        return $this->belongsToMany(Product::class,'shopping_cart')->withPivot('quantity')->withTimestamps();
+    public function shopping_cart()
+    {
+        return $this->belongsToMany(Product::class, 'shopping_cart')->withPivot('quantity')->withTimestamps();
     }
 }

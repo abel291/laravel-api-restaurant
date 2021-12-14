@@ -23,15 +23,14 @@ class CreateProductsTable extends Migration
             $table->text("description_min");
             $table->string("img");
             $table->string("banner");
-            $table->string("stars");
-            $table->float('price_default')->nullable();
-            $table->integer('max_quantity');
+            //$table->string("stars");
+            //$table->float('price_default')->nullable();
+            //$table->integer('max_quantity');
             $table->integer('stock');
-            $table->tinyInteger('offer')->nullable();
-            $table->float('price')->default(0);
-            $table->string("type")->default('menu')->nullable();
+            //$table->tinyInteger('offer')->nullable();
+            $table->float('price')->default(0);            
             $table->boolean("active")->default(1);
-            $table->foreignId('category_id')->nullable()->index();
+            $table->foreignId('category_id')->index();
             $table->timestamps();
         });
     }

@@ -29,10 +29,11 @@
 
         <x-sidebar />
         <div class="w-full bg-gray-100">
-            @livewire('navigation-menu') 
 
+            @livewire('navigation-menu')
+            <x-notification />
             <!-- Page Heading -->
-             @if (isset($header))
+            @if (isset($header))
                 <header class=" ">
                     <div class="max-w-7xl mx-auto pt-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}

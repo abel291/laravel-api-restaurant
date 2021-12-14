@@ -2,8 +2,9 @@
 
 namespace Database\Seeders;
 
-use App\Models\Category;
-use App\Models\Discount;
+use App\Models\DiscountCode;
+use App\Models\Image;
+use App\Models\Promo;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,16 +15,19 @@ class DatabaseSeeder extends Seeder
      * @return void
      */
     public function run()
-    {        
-        
+    {
+        Image::truncate();
         $this->call([
             UserSeeder::class,
             CategorySeeder::class,
-            ProductSeeder::class,            
+            ProductSeeder::class,
             ShoppingCartSeeder::class,
             PageSeeder::class,
             GallerySeeder::class,
+            PromoSeeder::class,
         ]);
-        Discount::factory(20)->create();
+        DiscountCode::factory(4)->create();
+
+        
     }
 }

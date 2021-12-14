@@ -26,8 +26,11 @@ class User extends Authenticatable
     protected $fillable = [
         'name',
         'email',
+        'phone',
+        'active',
         'password',
     ];
+
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,7 +50,14 @@ class User extends Authenticatable
      * @var array
      */
     protected $casts = [
+        'name' => 'string',
+        'phone' => 'string',
+        'email' => 'string',
+        'active' => 'boolean',
         'email_verified_at' => 'datetime',
+    ];
+    protected $attributes = [
+        'active' => 0,
     ];
 
     /**
@@ -66,6 +76,6 @@ class User extends Authenticatable
 
     public function used_discount()
     {
-        return $this->belongsToMany(Discount::class, 'used_code_discounts')->withTimestamps();
+        return $this->belongsToMany(DiscountCode::class, 'used_code_discounts')->withTimestamps();
     }
 }

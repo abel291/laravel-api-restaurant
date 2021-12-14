@@ -19,15 +19,9 @@ class UserSeeder extends Seeder
     {
 
         DB::table('users')->truncate();
-        $faker = Faker\Factory::create();
-        User::create([
-            'name' => 'Gregoria Soriano',
+        User::factory()->create([
             'email' => 'example@exmaple.com',
             'password' => Hash::make('123123'),
-            'phone' => $faker->phoneNumber,
-            'country' => str_replace(["'", '"'], '', $faker->country),
-            'city' => str_replace(["'", '"'], '', $faker->city),
-
         ]);
         User::factory(20)->create();
     }

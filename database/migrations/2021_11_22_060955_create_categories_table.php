@@ -18,6 +18,8 @@ class CreateCategoriesTable extends Migration
             $table->string("name");
             $table->string("slug");            
             $table->string("img");
+            $table->enum("type",['menu', 'gift_card'])->default('menu');
+            $table->boolean("active")->default(1);
             $table->timestamps();
         });
     }

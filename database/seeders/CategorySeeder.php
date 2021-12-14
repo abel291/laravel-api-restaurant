@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Seeder;
 use Faker;
 use Illuminate\Support\Facades\DB;
@@ -18,16 +19,22 @@ class CategorySeeder extends Seeder
     public function run()
     {
         DB::table('categories')->truncate();
-        $categories = ['Hamburguesas', 'Ensaladas', 'Pizza', 'Bebidas'];
-
-        foreach ($categories as $key => $category) {            
-            Category::create(
-                [
-                    'name' => $category,
-                    'slug' =>  Str::slug($category),
-                    'img' => "/img/" . Str::slug($category) . "/banner-1.jpg",
-                ]
-            );
+        $categories_menu = ['Hamburguesas', 'Ensaladas', 'Pizza', 'Bebidas'];
+        foreach ($categories_menu as $key => $category) {
+            Category::create([
+                'name' => $category,
+                'slug' =>  Str::slug($category),
+                'img' => "categories/" . Str::slug($category) . "-img.jpg",
+                'active' => 1
+            ]);
         }
+        
+        Category::create([
+            'name' => 'Gift Card',
+            'slug' =>  'gift_card',
+            'img' => "",
+            'type'=>'gift_card',
+            'active' => 1
+        ]);
     }
 }

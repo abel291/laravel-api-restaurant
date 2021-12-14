@@ -4,7 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class DiscountFactory extends Factory
+class PageFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -14,10 +14,10 @@ class DiscountFactory extends Factory
     public function definition()
     {
         return [
-            'code' =>$this->faker->bothify('?#?#?#?#') ,
-            'percent' =>rand(1,100),
-            'quantity' =>rand(1,100) ,
-            'active' =>1 ,
+            'type' => $this->faker->sentence(2),
+            'banner' => 'banner.jpg',
+            'alt_banner' => $this->faker->sentence(2),
+            "title" => $this->faker->sentence(2),
         ];
     }
 }

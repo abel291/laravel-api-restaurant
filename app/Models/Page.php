@@ -10,11 +10,19 @@ class Page extends Model
     use HasFactory;
     protected $fillable = [
         'type',
-        'img',
-        'alt_img',
+        'banner',
         'title',
-        'breadcrumb',
-        'created_at',
-        'updated_at',
+        'options',
+        
+        
     ];
+    protected $casts = [
+        'title' => 'string',
+        'options'=>'object'
+    ];
+    protected $attributes = [
+        'title' => '',
+        
+    ];
+    // 
 }

@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Page;
+use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class PageSeeder extends Seeder
@@ -17,84 +18,76 @@ class PageSeeder extends Seeder
         $pages = [
             [
                 'type' => 'home',
-                'img' => '/img/home/banner.jpg',
-                'alt_img' => ' img home',
+                'banner' => 'home/banner.jpg',
                 'title' => 'COMPARTE Y DISFRUTA',
-                'breadcrumb' => '',
+
             ],
             [
                 'type' => 'menus',
-                'img' => '/img/menu/banner.jpg',
-                'alt_img' => ' img home',
+                'banner' => 'menu/banner.jpg',
                 'title' => 'MENU',
-                'breadcrumb' => '',
             ],
             [
                 'type' => 'about',
-                'img' => '/img/about/banner.jpg',
-                'alt_img' => '/img/about  ',
+                'banner' => 'about/banner.jpg',
                 "title" => "Acerca de nosotros",
-                'breadcrumb' => '',
             ],
             [
                 'type' => 'gallery',
-                'img' => 'img/galleries/banner.jpg"',
-                'alt_img' => 'img/galleries . ',
+                'banner' => 'galleries/banner.jpg',
                 "title" => "Galeria de imagenes",
-                'breadcrumb' => '',
+
             ],
             [
                 'type' => 'locations',
-                'img' => '/img/locations/banner.jpg',
-                'alt_img' => '/img/locations  ',
+                'banner' => 'locations/banner.jpg',
                 "title" => "NUESTRAS UBICACIONES",
-                'breadcrumb' => '',
+
             ],
             [
                 'type' => 'team',
-                'img' => '/img/team/banner.jpg',
-                'alt_img' => '/img/team  ',
+                'banner' => 'team/banner.jpg',
                 "title" => "NUESTRO EQUIPO",
-                'breadcrumb' => '',
+
             ],
             [
                 'type' => 'faq',
-                'img' => '/img/faq/banner.jpg',
-                'alt_img' => '/img/faq  ',
+                'banner' => 'faq/banner.jpg',
                 "title" => "PREGUNTAS FRECUENTES",
-                'breadcrumb' => '',
+
             ],
             [
                 'type' => 'terms',
-                'img' => '/img/terms/banner.jpg',
-                'alt_img' => '/img/terms  ',
+                'banner' => 'terms/banner.jpg',
                 "title" => "TERMINOS Y CONDICIONES",
-                'breadcrumb' => '',
+
             ],
             [
                 'type' => 'gift-card',
-                'img' => '/img/gift-cards/banner',
-                'alt_img' => '/img/gift-cards  ',
+                'banner' => 'gift-cards/banner.jpg',
                 "title" => "TARJETAS  DE REGALO",
-                'breadcrumb' => '',
+
             ],
             [
                 'type' => 'contact',
-                'img' => '/img/contact/banner.jpg',
-                'alt_img' => '/img/contact  ',
+                'banner' => 'contact/banner.jpg',
                 "title" => "CONTÁCTENOS",
-                'breadcrumb' => '',
             ],
         ];
         Page::truncate();
-        foreach ($pages as $key => $page) {
-            Page::create([
-                'type' => $page['type'],
-                'img' => $page['img'],
-                'alt_img' => $page['alt_img'],
-                "title" => $page['title'],
-                'breadcrumb' => $page['breadcrumb'],
-            ]);
-        }
+        Page::factory()
+            ->count(count($pages))
+            ->state(new Sequence(...$pages))
+            ->create();
+        // foreach ($pages as $key => $page) {
+        //     Page::create([
+        //         'type' => $page['type'],
+        //         'banner' => $page['banner'],
+        //         "title" => $page['title'],
+        //         'breadcrumb' => $page['breadcrumb'],
+        //         'options' => $page['options'],
+
+        //     ]);
+        // }
     }
 }

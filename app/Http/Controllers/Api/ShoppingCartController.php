@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\ProductResource;
-use App\Models\Discount;
+use App\Models\DiscountCode;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
@@ -142,7 +142,7 @@ class ShoppingCartController extends Controller
             'code' => 'required|exists:discounts,code',
         ]);
         $user = User::with('shopping_cart')->first();
-        $discount = Discount::where('code', $request->code)->first();
+        $discount = DiscountCode::where('code', $request->code)->first();
         $user->used_discount()->sync($discount->id);
 
         return $this->total_price($user);

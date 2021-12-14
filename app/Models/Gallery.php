@@ -11,11 +11,13 @@ class Gallery extends Model
     protected $fillable = [
         'name',
         'slug',
+        'description',
         'active'
     ];
     protected $casts = [
         'name' => 'string',
         'slug' => 'string',
+        'description' => 'string',
         'active' => 'boolean',
 
     ];

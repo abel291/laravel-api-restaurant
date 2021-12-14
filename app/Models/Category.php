@@ -13,6 +13,15 @@ class Category extends Model
         'slug',
         'img',
     ];
+    protected $casts = [
+        'name' => 'string',
+        'slug' => 'string',
+        'img' => 'string',
+        'active' => 'boolean',        
+    ];
+    protected $attributes = [
+        'active' => 1,
+    ];
 
     public function products(){
         return $this->hasMany(Product::class);
